@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Breaks to Defenses | B.Z</title>
+   <meta name="description" content="Independent embedded systems and hardware security research by Bedri Zija. From glitching and fault injection to cryptographic exploits — breaking embedded systems to build stronger defenses.">
+   <meta name="robots" content="index, follow">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 2.5rem;
+      color: #00ffcc;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      background-color: #1e1e1e;
+      text-align: center;
+      padding: 20px 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00ffcc;
+    }
+
+    nav a {
+      color: #00ffcc;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+
+    section {
+      padding: 50px;
+      max-width: 900px;
+      margin: 0 auto;
+      border: 2px solid #00ffcc;
+      background-color: #222222;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+    }
+
+    h1, h2 {
+      color: #00ffcc;
+      font-size: 2rem;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 15px;
+    }
+
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #999;
+      background-color: #0a0a0a;
+      border-top: 2px solid #00ffcc;
+    }
+
+    .box-section {
+      background-color: #1a1a1a;
+      border: 2px solid #00ffcc;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .box-section:hover {
+      transform: scale(1.02);
+    }
+  </style>
+
+<script>
+  (function () {
+    const hasQuery = window.location.search.includes('v=');
+    const cleanUrl = window.location.origin + window.location.pathname;
+
+    if (location.protocol === 'https:' && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      }).catch(console.warn);
+    }
+
+    if (!hasQuery && !sessionStorage.getItem('cacheBusted')) {
+      sessionStorage.setItem('cacheBusted', '1');
+      const version = Date.now();
+      window.location.replace(`${cleanUrl}?v=${version}`);
+    }
+
+    if (hasQuery && sessionStorage.getItem('cacheBusted')) {
+      sessionStorage.removeItem('cacheBusted');
+      window.history.replaceState(null, '', cleanUrl);
+    }
+  })();
+</script>
+</head>
+<body>
+
+  <header>
+    <h>Bedri Zija</h>
+    <p>Embedded Systems & Hardware Security Researcher</p>
+    <h2>Breaking Embedded Systems to Build Stronger Defenses</h2>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <div class="box-section">
+      <h2>About Me</h2>
+        <p>
+          I'm an independent embedded systems and hardware security researcher focused on fault injection, side-channel analysis, cryptographic fault attacks such as Differential Fault Analysis (DFA), and bypassing hardware security protections like read-out and access restrictions. I build custom low-cost tools to uncover vulnerabilities in wireless SoCs, MCUs, hardware cryptographic engines, and software cryptographic implementations. My work also covers secure embedded design, with a focus on practical hardware and firmware countermeasures against physical attacks. My background as an embedded hardware/software engineer, designing firmware and hardware for connected devices, gives me a unique edge in understanding and securing the systems I break.
+        </p>    
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="box-section">
+      <h2>Featured Research</h2>
+      <ul>
+        <li>
+          <strong>
+            <a href="https://bedri-zija.github.io/voltage-fault-injection-attack-aes128-cryptocell-310-nrf52840/" target="_blank">
+              AES-128 ECB/CBC/CTR Plaintext Recovery and Error Byte Diffusion via Voltage Fault Injection on Arm® TrustZone® CryptoCell 310 in Nordic Semiconductor nRF52840 SoC – 2024–2025
+            </a>
+          </strong>
+          <p>Explored voltage fault injection on the Arm® TrustZone® CryptoCell 310 AES-128 engine in the Nordic nRF52840 SoC. The research demonstrates how controlled voltage glitches can lead to plaintext leakage in ECB, CBC, and CTR modes, offering insight into the impact of physical faults on hardware-based AES encryption.</p>
+          <p>Reported on Nov 13, 2024. Publicly disclosed on Apr 11, 2025, in coordination with Nordic Semiconductor ASA.</p>
+          <span style="display:block; margin-top:10px;">Read the Nordic Advisory here: <a href="https://docs.nordicsemi.com/bundle/SA/resource/SA-2025-380-v1_0.pdf" target="_blank" rel="noopener noreferrer">Nordic Semiconductor Advisory - April 11, 2025</a>.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+  
+  <section id="contact">
+    <div class="box-section">
+      <h2>Contact</h2>
+      <p>Email: <span id="email"></span></p>
+      <p>LinkedIn: <span id="linkedin"></span></p>
+      </div>
+  </section>
+
+  <script>
+    var var1 = 'YmVkcmkuemlqYUBwcm90b24ubWU='; 
+    var var2 = 'aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2JlZHJpLXppamE=';
+    var var3 = atob(var1); 
+    var var4 = atob(var2);
+    document.getElementById("email").innerHTML = '<a href="mailto:' + var3 + '">' + var3 + '</a>';
+    document.getElementById("linkedin").innerHTML = '<a href="' + var4 + '" target="_blank">bedri-zija</a>';
+  </script>
+
+<footer>
+    &copy; 2025 Bedri Zija. All rights reserved.
+</footer>
+
+</body>
+</html>
